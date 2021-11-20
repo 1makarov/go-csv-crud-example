@@ -1,0 +1,103 @@
+definitions:
+  types.CreateInput:
+    properties:
+      name:
+        type: string
+      price:
+        type: integer
+    type: object
+  types.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  types.UpdateInput:
+    properties:
+      name:
+        type: string
+      price:
+        type: integer
+    type: object
+info:
+  contact: {}
+  title: Store API
+  version: "1.0"
+paths:
+  /api/v1/products/:
+    get:
+      operationId: get-csv-products
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: get csv
+      tags:
+      - products
+    post:
+      operationId: create-product
+      parameters:
+      - description: ' '
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreateInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: create
+      tags:
+      - products
+  /api/v1/products/{id}:
+    delete:
+      operationId: delete-product
+      parameters:
+      - description: ' '
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: delete
+      tags:
+      - products
+    put:
+      operationId: update-product
+      parameters:
+      - description: ' '
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: ' '
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/types.UpdateInput'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: update
+      tags:
+      - products
+swagger: "2.0"
