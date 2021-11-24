@@ -2,10 +2,11 @@ package v1
 
 import (
 	"fmt"
-	"github.com/1makarov/go-csv-crud-example/internal/types"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+
+	"github.com/1makarov/go-csv-crud-example/internal/types"
+	"github.com/gin-gonic/gin"
 )
 
 func (h *Handler) initProductsRouter(api *gin.RouterGroup) {
@@ -58,7 +59,7 @@ func (h *Handler) get(c *gin.Context) {
 	}
 
 	headers := map[string]string{
-		"Content-Disposition": `attachment; filename="csv.txt"`,
+		"Content-Disposition": `attachment; filename="products.csv"`,
 	}
 
 	c.DataFromReader(http.StatusOK, -1, "text/html; charset=UTF-8", products, headers)
