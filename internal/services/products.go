@@ -22,6 +22,10 @@ func (s *ServiceProducts) Get(ctx context.Context) (*strings.Reader, error) {
 		return nil, err
 	}
 
+	if len(products) == 0 {
+		return nil, fmt.Errorf("no products")
+	}
+
 	var builder strings.Builder
 
 	for _, product := range products {

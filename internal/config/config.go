@@ -5,11 +5,6 @@ import (
 	"os"
 )
 
-const (
-	EnvLocal = "local"
-	Prod     = "prod"
-)
-
 type (
 	Config struct {
 		Environment string
