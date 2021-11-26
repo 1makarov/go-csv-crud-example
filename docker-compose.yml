@@ -10,7 +10,7 @@ services:
       - ${HTTP_PORT}:${HTTP_PORT}
     restart: always
     env_file:
-      - .env.example
+      - .env
     networks:
       - application
 
@@ -21,7 +21,7 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - .env.example
+      - .env
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -43,7 +43,7 @@ services:
     depends_on:
       - postgres
     env_file:
-      - .env.example
+      - .env
     volumes:
       - ./migrations:/migrations
     command: [
