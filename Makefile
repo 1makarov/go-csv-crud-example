@@ -1,11 +1,8 @@
-migrate-status:
-	goose -dir .\schema postgres "user=root dbname=store password=test sslmode=disable" status
-
 migrate-up:
-	goose -dir .\schema postgres "user=root dbname=store password=test sslmode=disable" up
+	migrate -path ./migrations -database postgres://root:test@localhost:5432/store?sslmode=disable up
 
 migrate-down:
-	goose -dir .\schema postgres "user=root dbname=store password=test sslmode=disable" up
+	migrate -path ./migrations -database postgres://root:test@localhost:5432/store?sslmode=disable down
 
-migrate-version:
-	goose -dir .\schema postgres "user=root dbname=store password=test sslmode=disable" version
+migrate-drop:
+	migrate -path ./migrations -database postgres://root:test@localhost:5432/store?sslmode=disable drop
